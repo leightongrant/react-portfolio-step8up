@@ -10,7 +10,7 @@ export const Layout = ({ children }: MyComponentProps) => {
 	return (
 		<>
 			<Header />
-			<>{children}</>
+			{children}
 			<Footer />
 		</>
 	)
