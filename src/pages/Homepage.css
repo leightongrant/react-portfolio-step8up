@@ -1,0 +1,18 @@
+.hero-container {
+	min-height: 400px;
+	align-items: center;
+	background-image: url('../assets/images/hero.webp');
+	background-size: cover;
+	background-position: bottom;
+}
+.hero-content {
+	align-items: center;
+	justify-content: center;
+	padding-inline: 0.75rem;
+}
+
+.hero-cta,
+.about-cta,
+.contact-cta {
+	width: fit-content;
+}
