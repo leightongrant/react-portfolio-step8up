@@ -1,33 +1,56 @@
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import Stack from 'react-bootstrap/Stack'
+import { Link } from 'react-router-dom'
+
 export const Header = () => {
 	return (
-		<Navbar
-			expand='lg'
-			className='bg-body-tertiary'
-		>
-			<Container>
-				<Navbar.Brand href='#home'>React-Bootstrap</Navbar.Brand>
-				<Navbar.Toggle aria-controls='basic-navbar-nav' />
-				<Navbar.Collapse id='basic-navbar-nav'>
-					<Nav className='me-auto'>
-						<Nav.Link href='#home'>Home</Nav.Link>
-						<Nav.Link href='#link'>Link</Nav.Link>
-						<NavDropdown
-							title='Dropdown'
-							id='basic-nav-dropdown'
-						>
-							<NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
-							<NavDropdown.Item href='#action/3.2'>Another action</NavDropdown.Item>
-							<NavDropdown.Item href='#action/3.3'>Something</NavDropdown.Item>
-							<NavDropdown.Divider />
-							<NavDropdown.Item href='#action/3.4'>Separated link</NavDropdown.Item>
-						</NavDropdown>
-					</Nav>
-				</Navbar.Collapse>
-			</Container>
-		</Navbar>
+		<Stack as='header'>
+			<Navbar
+				bg='dark'
+				data-bs-theme='dark'
+				expand='lg'
+			>
+				<Container fluid>
+					<Navbar.Brand>
+						<Link to='/'>LG</Link>
+					</Navbar.Brand>
+					<Navbar.Toggle aria-controls='navbar-nav' />
+					<Navbar.Collapse id='navbar-nav'>
+						<Nav className='ms-auto'>
+							<Link
+								to='/'
+								data-rr-ui-event-key='/'
+								className='nav-link'
+							>
+								Home
+							</Link>
+							<Link
+								to='about'
+								data-rr-ui-event-key='about'
+								className='nav-link'
+							>
+								About
+							</Link>
+							<Link
+								to='projects'
+								data-rr-ui-event-key='projects'
+								className='nav-link'
+							>
+								Projects
+							</Link>
+							<Link
+								to='contact'
+								data-rr-ui-event-key='contact'
+								className='nav-link'
+							>
+								Contact
+							</Link>
+						</Nav>
+					</Navbar.Collapse>
+				</Container>
+			</Navbar>
+		</Stack>
 	)
 }

@@ -1,21 +1,45 @@
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
+import { FaGithub } from 'react-icons/fa'
+import { FaLinkedin } from 'react-icons/fa'
+import { MdEmail } from 'react-icons/md'
+import { FaPhone } from 'react-icons/fa'
 
 export const Footer = () => {
 	return (
-		<Stack className='site-footer-container bg-dark text-light'>
-			<Container>
-				<Row>
-					<Col>&copy; Copyright 2025 | Leighton Grant</Col>
-					<Col>
-						<Row>
-							<Col>LinkedIn</Col>
-							<Col>GitHub</Col>
-						</Row>
-					</Col>
-				</Row>
+		<Stack
+			as='footer'
+			className='site-footer-container bg-dark text-light block-padding-small'
+		>
+			<Container className='flex-grow-1'>
+				<Stack
+					direction='horizontal'
+					className='flex-wrap gap-3'
+				>
+					<Stack
+						direction='horizontal'
+						className='justify-content-center justify-content-md-start flex-grow-1'
+					>
+						&copy; Copyright 2025 | Leighton Grant
+					</Stack>
+					<Stack
+						direction='horizontal'
+						className='justify-content-center justify-content-md-end gap-3 flex-grow-1'
+					>
+						<a href='https://github.com/leightongrant'>
+							<FaGithub />
+						</a>
+						<a href='https://www.linkedin.com/in/leightongrant/'>
+							<FaLinkedin />
+						</a>
+						<a href='mailto:dev@leightongrant.me'>
+							<MdEmail />
+						</a>
+						<a href='tel:+447886028826'>
+							<FaPhone />
+						</a>
+					</Stack>
+				</Stack>
 			</Container>
 		</Stack>
 	)
