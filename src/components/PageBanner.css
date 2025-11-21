@@ -8,3 +8,7 @@
 .banner-overlay {
 	background: radial-gradient(circle, rgba(242, 240, 239, 0.8) 0%, rgba(54, 69, 79, 0.5) 100%);
 }
+
+.banner-title {
+	font-family: var(--font-headings);
+}

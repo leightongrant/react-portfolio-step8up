@@ -7,10 +7,10 @@ import { ContactPage } from './pages/Contact'
 import { PageBanner } from './components/PageBanner'
 import { useLocation } from 'react-router-dom'
 import { ProjectDetails } from './components/ProjectDetails'
+import { PageNotFound } from './components/PageNotFound'
 
 function App() {
 	const { pathname } = useLocation()
-
 	return (
 		<Layout>
 			{pathname !== '/' && <PageBanner />}
@@ -35,6 +35,10 @@ function App() {
 				<Route
 					path='/contact'
 					element={<ContactPage />}
+				/>
+				<Route
+					path='*'
+					element={<PageNotFound />}
 				/>
 			</Routes>
 		</Layout>

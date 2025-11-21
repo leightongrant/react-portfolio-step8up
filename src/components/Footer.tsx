@@ -18,7 +18,7 @@ export const Footer = () => {
 				>
 					<Stack
 						direction='horizontal'
-						className='justify-content-center justify-content-md-start flex-grow-1'
+						className='justify-content-center justify-content-md-start flex-grow-1 text-secondary'
 					>
 						&copy; Copyright 2025 | Leighton Grant
 					</Stack>
@@ -27,16 +27,16 @@ export const Footer = () => {
 						className='justify-content-center justify-content-md-end gap-3 flex-grow-1'
 					>
 						<a href='https://github.com/leightongrant'>
-							<FaGithub />
+							<FaGithub className='fs-4 text-secondary' />
 						</a>
 						<a href='https://www.linkedin.com/in/leightongrant/'>
-							<FaLinkedin />
+							<FaLinkedin className='fs-4 text-secondary' />
 						</a>
 						<a href='mailto:dev@leightongrant.me'>
-							<MdEmail />
+							<MdEmail className='fs-4 text-secondary' />
 						</a>
 						<a href='tel:+447886028826'>
-							<FaPhone />
+							<FaPhone className='fs-4 text-secondary' />
 						</a>
 					</Stack>
 				</Stack>

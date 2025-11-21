@@ -9,7 +9,7 @@ export const PageBanner = () => {
 			<Stack className='banner-overlay'>
 				<Container className='flex-grow-1'>
 					<Stack className='page-banner-content justify-content-center h-100'>
-						<span className='fs-1 fw-bold'>{pathname.slice(1).toLocaleUpperCase()}</span>
+						<span className='fs-1 fw-bold banner-title'>{pathname.slice(1).toLocaleUpperCase()}</span>
 					</Stack>
 				</Container>
 			</Stack>

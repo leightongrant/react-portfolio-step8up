@@ -3,10 +3,15 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Stack from 'react-bootstrap/Stack'
 import { Link } from 'react-router-dom'
+import logo from '../assets/images/logo.png'
+import Image from 'react-bootstrap/Image'
 
 export const Header = () => {
 	return (
-		<Stack as='header'>
+		<Stack
+			as='header'
+			className='position-sticky top-0 z-3 shadow shadow-lg'
+		>
 			<Navbar
 				bg='dark'
 				data-bs-theme='dark'
@@ -14,11 +19,17 @@ export const Header = () => {
 			>
 				<Container fluid>
 					<Navbar.Brand>
-						<Link to='/'>LG</Link>
+						<Link to='/'>
+							<Image
+								src={logo}
+								alt='leighton grant logo'
+								width={40}
+							/>
+						</Link>
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls='navbar-nav' />
 					<Navbar.Collapse id='navbar-nav'>
-						<Nav className='ms-auto'>
+						<Nav className='ms-auto text-uppercase fs-6'>
 							<Link
 								to='/'
 								data-rr-ui-event-key='/'

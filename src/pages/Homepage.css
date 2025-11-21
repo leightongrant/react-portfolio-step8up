@@ -11,6 +11,10 @@
 	padding-inline: 0.75rem;
 }
 
+.hero-title {
+	font-family: var(--font-headings);
+}
+
 .hero-cta,
 .about-cta,
 .contact-cta,

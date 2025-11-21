@@ -28,7 +28,7 @@ const Hero = () => {
 					<span className='hero-subtitle text-center display-3 fs-4'>Learning, building, and refining... one project at a time</span>
 					<Link
 						to='contact'
-						className='hero-cta d-flex align-items-center btn btn-dark gap-2'
+						className='hero-cta d-flex align-items-center btn btn-outline-dark gap-2'
 						type='button'
 					>
 						Get In Touch <FaArrowRight />
@@ -121,7 +121,7 @@ const Projects = () => {
 				className='d-block w-100 object-fit-cover'
 				src={img}
 				alt={text}
-				height={600}
+				height={800}
 			/>
 		)
 	}
