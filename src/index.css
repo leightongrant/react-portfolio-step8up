@@ -4,7 +4,6 @@
 	font-weight: 400;
 
 	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
 	background-color: #242424;
 
 	font-synthesis: none;
@@ -27,7 +26,7 @@ a:hover {
 body {
 	margin: 0;
 	min-width: 320px;
-	min-height: 100vh;
+	color: #36454f;
 }
 
 h1 {
@@ -52,6 +51,16 @@ button:hover {
 button:focus,
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
+}
+
+.block-padding-large {
+	padding-block: 8rem;
+}
+.block-padding-medium {
+	padding-block: 3rem;
+}
+.block-padding-small {
+	padding-block: 2rem;
 }
 
 @media (prefers-color-scheme: light) {
