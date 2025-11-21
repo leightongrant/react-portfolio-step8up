@@ -1,0 +1,10 @@
+.page-banner-container {
+	min-height: 8.25rem;
+	background-image: url('../assets/images/hero.webp');
+	background-size: cover;
+	background-position: center;
+}
+
+.banner-overlay {
+	background: radial-gradient(circle, rgba(242, 240, 239, 0.8) 0%, rgba(54, 69, 79, 0.5) 100%);
+}
