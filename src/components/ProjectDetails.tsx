@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 
 export const ProjectDetails = () => {
-	const [data, setData] = useState<any>(null)
+	const [readme, setReadme] = useState<any>(null)
 	const [error, setError] = useState<any>(null)
 	const params = useParams()
 	const url = `https://api.github.com/repos/leightongrant/${params.id}/readme`
@@ -22,8 +22,8 @@ export const ProjectDetails = () => {
 				},
 			})
 			if (response.ok) {
-				const data = await response.text()
-				setData(data)
+				const readme = await response.text()
+				setReadme(readme)
 				return
 			}
 			const error = await response.json()
@@ -39,14 +39,26 @@ export const ProjectDetails = () => {
 	}, [])
 
 	if (error) return <Error error={error} />
-	if (!data) return <PreLoader />
+	if (!readme) return <PreLoader />
 	return (
 		<Stack
 			className='block-padding-large'
 			as='main'
 		>
 			<Container>
-				<ReactMarkdown>{data}</ReactMarkdown>
+				<ReactMarkdown
+					components={{
+						img: ({ node, ...props }) => (
+							<img
+								{...props}
+								className='img-fluid rounded shadow'
+								alt={props.alt || 'Markdown image'}
+							/>
+						),
+					}}
+				>
+					{readme}
+				</ReactMarkdown>
 				<Stack>
 					<Link
 						to='/projects'

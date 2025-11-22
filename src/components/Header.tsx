@@ -10,7 +10,7 @@ export const Header = () => {
 	return (
 		<Stack
 			as='header'
-			className='position-sticky top-0 z-3 shadow shadow-lg'
+			className='position-sticky top-0 z-3 shadow'
 		>
 			<Navbar
 				bg='dark'

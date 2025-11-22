@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 import { HiOutlineExternalLink } from 'react-icons/hi'
+import { FaArrowRight } from 'react-icons/fa6'
 import { normalizeRepoName } from '../utilities/normalize-repo-name'
 import { PreLoader } from '../preloader/preloaders'
 import { Error } from '../error/errors'
@@ -79,7 +80,9 @@ const ProjectCard = ({ repo }: { repo: any }): JSX.Element => {
 				</Stack>
 			</Card.Body>
 			<Card.Footer className='d-flex justify-content-between'>
-				<Link to={`${repo.name}`}>Details</Link>
+				<Link to={`${repo.name}`}>
+					Details <FaArrowRight />
+				</Link>
 				<Stack direction='horizontal'>
 					<Card.Link
 						href={repo.html_url}
