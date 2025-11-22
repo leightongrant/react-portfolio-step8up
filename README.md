@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+# A Personal Portfolio Built Using React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-Currently, two official plugins are available:
+A small, responsive portfolio website built with React, TypeScript, Vite, and Bootstrap. This repository contains the source for a single-page portfolio application with components for hero, about, projects, and contact sections.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Site preview](https://raw.githubusercontent.com/leightongrant/react-portfolio-step8up/main/src/assets/images/screenshot.webp)
 
-## React Compiler
+## Live demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+[![Live demo](https://img.shields.io/badge/Live%20Demo-View-brightgreen?style=for-the-badge)](https://leightongrant.github.io/react-portfolio-step8up/)
 
-## Expanding the ESLint configuration
+## Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-   Single HTML entry: `index.html` — serves as the mount point for the React app.
+-   React components are located in the `src/` directory.
+-   Built with Vite, React, TypeScript, and styled with Bootstrap 5.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+-   Responsive layout using Bootstrap's grid system and components.
+-   Component-based architecture with React.
+-   Type safety with TypeScript.
+-   Fast development and builds powered by Vite.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tech stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+-   React
+-   TypeScript
+-   Vite
+-   Bootstrap 5
+-   React-Bootstrap
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Quick start
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/your_username/your_repository.git
+    ```
+2.  Navigate to the project directory and install dependencies:
+    ```bash
+    cd your_repository
+    npm install
+    ```
+3.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+    Then visit `http://localhost:5173` (or the address shown in your terminal) in your browser.
+
+## Project structure (high level)
+
+-   `index.html` — Main HTML entry point
+-   `src/` — Main application source code
+    -   `main.tsx` — Root React render script
+    -   `App.tsx` — Main application component
+    -   `components/` — Reusable React components
+-   `vite.config.ts` — Vite configuration
+-   `package.json` — Project dependencies and scripts
+-   `LICENSE` — Project license (MIT)
+
+## Contributing
+
+Small improvements are welcome: accessibility fixes, responsive tweaks, copy updates, or additional projects. Please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License — see the `LICENSE` file for details.
+
+## Contact
+
+For questions or feedback, you can reach the author by opening an issue in this repository.
