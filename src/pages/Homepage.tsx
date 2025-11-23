@@ -8,11 +8,16 @@ import './Homepage.css'
 import profileImage from '../assets/images/profile-img.webp'
 import { FaArrowRight } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import { normalizeRepoName } from '../utilities/normalize-repo-name'
 import carousel1 from '../assets/images/carousel-1.webp'
 import carousel2 from '../assets/images/carousel-2.webp'
 import carousel3 from '../assets/images/carousel-3.webp'
+import { useFetch } from '../hooks/hooks'
+import { z } from 'zod'
+import type { Repo } from '../hooks/hooks'
+import { RepoSchema } from '../hooks/hooks'
+import { PreLoader } from '../preloader/preloaders'
+import { Error } from '../error/errors'
 
 const carouselImages = [carousel1, carousel2, carousel3]
 
@@ -88,32 +93,34 @@ const About = () => {
 }
 
 const Projects = () => {
-	const [data, setData] = useState([])
-	useEffect(() => {
-		getRepos()
-	}, [])
-	const getRepos = async () => {
-		try {
-			const response = await fetch('https://api.github.com/search/repositories?q=user:leightongrant+step8up')
-			if (response.ok) {
-				const data = await response.json()
-				const { items } = data
-				const recentRepos = items
-					.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-					.map((item: any, idx: number) => {
-						return { name: normalizeRepoName(item.name), description: item.description, createAt: item.created_at, img: carouselImages[idx] }
-					})
-					.slice(0, 3)
+	const { loading, data, error } = useFetch('https://api.github.com/search/repositories?q=user:leightongrant+step8up')
 
-				setData(recentRepos)
-				return
-			}
-			const error = await response.json()
-			console.log(error)
-		} catch (error) {
-			console.log(error)
-		}
+	type RecentRepos = {
+		id: number
+		name: string
+		description: string
+		createdAt: string
+		img: string
 	}
+
+	const DataSchema = z.array(RepoSchema)
+
+	let repos: Repo[] = []
+	let recentRepos: RecentRepos[] = []
+
+	const validRepos = DataSchema.safeParse(data)
+	if (validRepos.success) {
+		repos = validRepos.data
+		recentRepos = repos
+			.sort((a: Repo, b: Repo) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+			.map((item: Repo, idx: number) => {
+				return { id: item.id, name: normalizeRepoName(item.name), description: item.description, createdAt: item.created_at, img: carouselImages[idx] }
+			})
+			.slice(0, 3)
+	}
+
+	if (loading) return <PreLoader />
+	if (error) return <Error error={error} />
 
 	const CarouselImage = ({ text, img }: { text: string; img: string }) => {
 		return (
@@ -129,31 +136,30 @@ const Projects = () => {
 		<Stack className='project-homepage-container'>
 			<Stack className='projects-homepage-content'>
 				<Carousel>
-					{data &&
-						data.map((repo: { name: string; createdAt: string; img: string; description: string }) => {
-							return (
-								<Carousel.Item
-									interval={3000}
-									key={repo.name}
-								>
-									<CarouselImage
-										text={repo.name}
-										img={repo.img}
-									/>
-									<Carousel.Caption className='text-dark fw-bold d-flex flex-column align-items-center gap-3 px-5'>
-										<h3 className='fs-2'>{repo.name.toLocaleUpperCase()}</h3>
-										<p style={{ maxWidth: '600px', textAlign: 'center' }}>{repo.description}</p>
-										<Link
-											to='projects'
-											className='projects-cta d-flex align-items-center btn btn-outline-dark gap-2 m-4'
-											type='button'
-										>
-											See More <FaArrowRight />
-										</Link>
-									</Carousel.Caption>
-								</Carousel.Item>
-							)
-						})}
+					{recentRepos.map((repo: RecentRepos) => {
+						return (
+							<Carousel.Item
+								interval={3000}
+								key={repo.id}
+							>
+								<CarouselImage
+									text={repo.name}
+									img={repo.img}
+								/>
+								<Carousel.Caption className='text-dark fw-bold d-flex flex-column align-items-center gap-3 px-5'>
+									<h3 className='fs-2'>{repo.name.toLocaleUpperCase()}</h3>
+									<p style={{ maxWidth: '600px', textAlign: 'center' }}>{repo.description}</p>
+									<Link
+										to='projects'
+										className='projects-cta d-flex align-items-center btn btn-outline-dark gap-2 m-4'
+										type='button'
+									>
+										See More <FaArrowRight />
+									</Link>
+								</Carousel.Caption>
+							</Carousel.Item>
+						)
+					})}
 				</Carousel>
 			</Stack>
 		</Stack>

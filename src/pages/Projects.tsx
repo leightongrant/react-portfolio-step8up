@@ -1,5 +1,4 @@
 import Stack from 'react-bootstrap/Stack'
-import { useState, useEffect, type JSX } from 'react'
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
@@ -11,10 +10,13 @@ import { normalizeRepoName } from '../utilities/normalize-repo-name'
 import { PreLoader } from '../preloader/preloaders'
 import { Error } from '../error/errors'
 import { Link } from 'react-router-dom'
-
 import './Projects.css'
+import { z } from 'zod'
+import { useFetch } from '../hooks/hooks'
+import { RepoSchema } from '../hooks/hooks'
+import type { Repo } from '../hooks/hooks'
 
-const ProjectCard = ({ repo }: { repo: any }): JSX.Element => {
+const ProjectCard = ({ repo }: { repo: any }) => {
 	const title = normalizeRepoName(repo.name)
 
 	const getTechColor = (tech: string): string => {
@@ -104,38 +106,22 @@ const ProjectCard = ({ repo }: { repo: any }): JSX.Element => {
 	)
 }
 
-export const ProjectsPage = (): JSX.Element => {
-	const [data, setData] = useState<any>([])
-	const [error, setError] = useState<any>(null)
+export const ProjectsPage = () => {
+	const { loading, data, error } = useFetch('https://api.github.com/search/repositories?q=user:leightongrant+step8up', {
+		headers: {
+			Accept: 'application/json',
+		},
+	})
 
-	useEffect(() => {
-		getRepos()
-	}, [])
-
-	const getRepos = async () => {
-		try {
-			const response = await fetch('https://api.github.com/search/repositories?q=user:leightongrant+step8up')
-			if (response.ok) {
-				const data = await response.json()
-				setData(data.items)
-				return
-			}
-			const error = await response.json()
-			console.log(error)
-			setError(error)
-		} catch (error) {
-			console.log(error)
-			setError(error)
-		}
+	const DataSchema = z.array(RepoSchema)
+	let repos: Repo[] = []
+	const validRepos = DataSchema.safeParse(data)
+	if (validRepos.success) {
+		repos = validRepos.data
 	}
 
-	if (error) {
-		return <Error error={error} />
-	}
-
-	if (data.length === 0) {
-		return <PreLoader />
-	}
+	if (error) return <Error error={error} />
+	if (loading) return <PreLoader />
 
 	return (
 		<Stack
@@ -144,7 +130,7 @@ export const ProjectsPage = (): JSX.Element => {
 		>
 			<Container className='flex-grow-1 d-flex align-items-center'>
 				<Row>
-					{data.map((item: any) => {
+					{repos.map((item: Repo) => {
 						return (
 							<Col
 								key={item.id}
