@@ -6,20 +6,29 @@ import Container from 'react-bootstrap/Container'
 import Stack from 'react-bootstrap/Stack'
 import { Link } from 'react-router-dom'
 import { FaArrowLeftLong } from 'react-icons/fa6'
-import { useFetch } from '../hooks/hooks'
+import { useQuery } from '@tanstack/react-query'
 
 export const ProjectDetails = () => {
 	const params = useParams()
+
 	const url = `https://api.github.com/repos/leightongrant/${params.id}/readme`
+
 	const fetchOptions = {
 		headers: {
 			Accept: 'application/vnd.github.v3.raw',
 		},
 	}
-	const { loading, data, error } = useFetch(url, fetchOptions)
+	const { isPending, error, data, isError } = useQuery({
+		queryKey: ['readme'],
+		queryFn: async () => {
+			const response = await fetch(url, fetchOptions)
+			return await response.text()
+		},
+	})
 
-	if (error) return <Error error={error} />
-	if (loading) return <PreLoader />
+	if (isPending) return <PreLoader />
+	if (isError) return <Error error={error.message} />
+
 	return (
 		<Stack
 			className='block-padding-large'
@@ -37,7 +46,7 @@ export const ProjectDetails = () => {
 						),
 					}}
 				>
-					{typeof data === 'string' ? data : ''}
+					{data}
 				</ReactMarkdown>
 
 				<Stack>

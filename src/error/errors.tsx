@@ -3,13 +3,13 @@ import Container from 'react-bootstrap/Container'
 import { Link } from 'react-router-dom'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 
-export const Error = ({ error }: { error: any }) => {
+export const Error = ({ error }: { error: String }) => {
 	return (
 		<Stack as='main'>
 			<Container className='flex-grow-1'>
 				<Stack className='justify-content-center align-items-center h-100'>
-					<h1 className='display-1'>Error</h1>
-					<p>{error.message || 'An error has occured'}</p>
+					{/* <h1 className='display-1'>Error</h1> */}
+					<p className='display-4'>{error || 'An error has occured'}</p>
 					<Link
 						to='/'
 						className='btn btn-dark mt-5 d-flex align-items-center gap-2'
