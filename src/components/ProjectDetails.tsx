@@ -37,7 +37,7 @@ export const ProjectDetails = () => {
 			<Container>
 				<ReactMarkdown
 					components={{
-						img: ({ node, ...props }) => (
+						img: ({ ...props }) => (
 							<img
 								{...props}
 								className='img-fluid rounded shadow'

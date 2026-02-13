@@ -6,11 +6,13 @@ import { FaArrowRight } from 'react-icons/fa6'
 import { normalizeRepoName } from '../../utilities/normalize-repo-name'
 import { Link } from 'react-router-dom'
 
-const ProjectCard = ({ repo }: { repo: any }) => {
+import type { Repo } from '../../hooks/useGithubData'
+
+const ProjectCard = ({ repo }: { repo: Repo }) => {
 	const title = normalizeRepoName(repo.name)
 
 	const getTechColor = (tech: string): string => {
-		const normalizedTech = tech.replace(/[\.\-\s]/g, '').toLowerCase()
+		const normalizedTech = tech.replace(/[.\-\s]/g, '').toLowerCase()
 		const colorMap: Record<string, string> = {
 			react: '61DAFB',
 			reactjs: '61DAFB',
@@ -45,7 +47,7 @@ const ProjectCard = ({ repo }: { repo: any }) => {
 		return { tech: topic, color: getTechColor(topic) }
 	})
 
-	const badgeUrls = techs.map((topic: any) => {
+	const badgeUrls = techs.map((topic: { tech: string; color: string }) => {
 		const label = encodeURIComponent(topic.tech)
 		const { color } = topic
 		return `https://img.shields.io/badge/${label}-${color}?style=for-the-badge&logo=${label}&logoColor=white`
@@ -84,7 +86,7 @@ const ProjectCard = ({ repo }: { repo: any }) => {
 						Repo <HiOutlineExternalLink />
 					</Card.Link>
 					<Card.Link
-						href={repo.homepage}
+						href={repo.homepage ?? undefined}
 						target='_blank'
 						rel='noopener'
 					>

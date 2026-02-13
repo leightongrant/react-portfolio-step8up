@@ -15,10 +15,8 @@ export const ItemsSchema = z.object({
 	items: z.array(RepoItemSchema),
 })
 
-const ReposArraySchema = RepoItemSchema.array()
-
-export type Repos = z.infer<typeof ReposArraySchema>
 export type Repo = z.infer<typeof RepoItemSchema>
+export type Repos = Repo[]
 
 const reposToInclude = 'step8up'
 const endpoint = `https://api.github.com/search/repositories?q=${reposToInclude} user:leightongrant in:name`

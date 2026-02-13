@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import { Link } from 'react-router-dom'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 
-export const Error = ({ error }: { error: String }) => {
+export const Error = ({ error }: { error: string }) => {
 	return (
 		<Stack as='main'>
 			<Container className='flex-grow-1'>

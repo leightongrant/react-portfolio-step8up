@@ -10,7 +10,7 @@ import carousel3 from '../../assets/images/carousel-3.webp'
 import { PreLoader } from '../../preloader/preloaders'
 import { Error } from '../../error/errors'
 import { useGithubData } from '../../hooks/useGithubData'
-import type { Repos, Repo } from '../../hooks/useGithubData'
+import type { Repo } from '../../hooks/useGithubData'
 
 const carouselImages = [carousel1, carousel2, carousel3]
 const CarouselImage = ({ text, img }: { text: string; img: string }) => {
@@ -31,9 +31,7 @@ const Projects = () => {
 	if (error) return <Error error={error.message} />
 	if (!data) return <Error error={'No repos'} />
 
-	let recentRepos: Repos = data
-
-	const repos = recentRepos
+	const repos = data
 		.sort((a: Repo, b: Repo) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 		.map((item: Repo, idx: number) => {
 			return {

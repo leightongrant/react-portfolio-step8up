@@ -9,6 +9,7 @@ export const PageNotFound = () => {
 	const navigate = useNavigate()
 	useEffect(() => {
 		navigate('/404', { state: { from: 'home' } })
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
